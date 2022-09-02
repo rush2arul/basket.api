@@ -41,8 +41,8 @@ pipeline {
 
 	 dir('src')
 	        {   
-		  sh '(docker ps --format '{{.Names}}'  | grep "basket.api") &&  (docker container stop basket.api;docker container rm basket.api)'
-		  sh 'docker run -d --env-file env.basket.api  -p "8001:80"  --name basket.api  basket.api'
+		  (docker ps --format '{{.Names}}'  | grep "basket.api") &&  (docker container stop basket.api;docker container rm basket.api)
+		  'docker run -d --env-file env.basket.api  -p "8001:80"  --name basket.api  basket.api'
 		  echo 'Deploy started Working fine'   
         	}
 
