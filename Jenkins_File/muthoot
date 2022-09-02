@@ -40,8 +40,11 @@ pipeline {
       steps {
 
 	 dir('src')
-	        {       
-        	echo 'Deploy'  
+	        {   
+		sh 'docker container stop basket.api'
+                sh 'docker container rm basket.api'
+                sh 'docker run -d --env-file env.basket.api  -p "8001:80"  --name basket.api  basket.api'
+		echo 'Deploy started Working fine'   
         	}
 
       	}
